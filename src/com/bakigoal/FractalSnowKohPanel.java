@@ -9,7 +9,7 @@ public class FractalSnowKohPanel extends JPanel {
     private static final int PHASE_COUNT = 6;
     private static final java.util.List<Color> COLORS = Arrays.asList(
             Color.WHITE, Color.GREEN, Color.MAGENTA,
-            new Color(255, 111, 0), Color.YELLOW, Color.CYAN);
+            Color.YELLOW, Color.CYAN, new Color(255, 111, 0));
     private int phase = 0;
 
     public FractalSnowKohPanel() {
@@ -22,15 +22,7 @@ public class FractalSnowKohPanel extends JPanel {
 
     public void paint(Graphics g) {
         super.paintComponent(g);
-        drawSnow(g, COLORS.get(phase), phase, 128);
-        drawPhase(g);
-    }
-
-    private void drawPhase(Graphics g) {
-        Font currentFont = g.getFont();
-        Font newFont = currentFont.deriveFont(128F);
-        g.setFont(newFont);
-        g.drawString(String.format("%d", phase), getWidth() / 2 - 32, getHeight() / 2 + 32);
+        drawSnow(g, COLORS.get(phase), phase, -100 + phase * 50);
     }
 
     private void drawSnow(Graphics g, Color color, int recursions, int delta) {
