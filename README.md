@@ -1,1 +1,1 @@
-![alt text](https://github.com/baki10/fractals-snow-koh/blob/master/fractals.png?raw=true)
+![alt text](https://github.com/baki10/fractals-snow-koh/blob/main/fractals.png?raw=true)
