@@ -2,20 +2,40 @@ package com.bakigoal;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Random;
 
 public class FractalSnowKohPanel extends JPanel {
+    private static final int SPEED = 1000;
+    private static final int PHASE_COUNT = 7;
+    private static final java.util.List<Color> COLORS = Arrays.asList(
+            Color.WHITE, Color.GREEN, Color.MAGENTA,
+            new Color(255, 111, 0), Color.YELLOW, Color.CYAN);
+    private int phase = 0;
+
     public FractalSnowKohPanel() {
         setBackground(new Color(40, 42, 54));
+        new Timer(SPEED, event -> {
+            phase = (phase + 1) % PHASE_COUNT;
+            repaint();
+        }).start();
     }
 
     public void paint(Graphics g) {
         super.paintComponent(g);
-        drawSnow(g, Color.LIGHT_GRAY, 0, -140);
-        drawSnow(g, Color.GREEN, 1, -110);
-        drawSnow(g, Color.MAGENTA, 2, -70);
-        drawSnow(g, new Color(255, 111, 0), 3, -10);
-        drawSnow(g, Color.YELLOW, 4, 70);
-        drawSnow(g, Color.CYAN, 5, 180);
+        drawSnow(g, getRandomColor(), phase, 128);
+        drawPhase(g);
+    }
+
+    private void drawPhase(Graphics g) {
+        Font currentFont = g.getFont();
+        Font newFont = currentFont.deriveFont(128F);
+        g.setFont(newFont);
+        g.drawString(String.format("%d", phase), getWidth() / 2 - 32, getHeight() / 2 + 32);
+    }
+
+    private Color getRandomColor() {
+        return COLORS.get(new Random().nextInt(COLORS.size()));
     }
 
     private void drawSnow(Graphics g, Color color, int recursions, int delta) {
