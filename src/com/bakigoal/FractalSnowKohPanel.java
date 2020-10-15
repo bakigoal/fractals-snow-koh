@@ -3,11 +3,10 @@ package com.bakigoal;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
-import java.util.Random;
 
 public class FractalSnowKohPanel extends JPanel {
     private static final int SPEED = 1000;
-    private static final int PHASE_COUNT = 7;
+    private static final int PHASE_COUNT = 6;
     private static final java.util.List<Color> COLORS = Arrays.asList(
             Color.WHITE, Color.GREEN, Color.MAGENTA,
             new Color(255, 111, 0), Color.YELLOW, Color.CYAN);
@@ -35,7 +34,7 @@ public class FractalSnowKohPanel extends JPanel {
     }
 
     private Color getRandomColor() {
-        return COLORS.get(new Random().nextInt(COLORS.size()));
+        return COLORS.get(phase);
     }
 
     private void drawSnow(Graphics g, Color color, int recursions, int delta) {
