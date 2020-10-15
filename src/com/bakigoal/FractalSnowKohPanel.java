@@ -22,7 +22,7 @@ public class FractalSnowKohPanel extends JPanel {
 
     public void paint(Graphics g) {
         super.paintComponent(g);
-        drawSnow(g, getRandomColor(), phase, 128);
+        drawSnow(g, COLORS.get(phase), phase, 128);
         drawPhase(g);
     }
 
@@ -31,10 +31,6 @@ public class FractalSnowKohPanel extends JPanel {
         Font newFont = currentFont.deriveFont(128F);
         g.setFont(newFont);
         g.drawString(String.format("%d", phase), getWidth() / 2 - 32, getHeight() / 2 + 32);
-    }
-
-    private Color getRandomColor() {
-        return COLORS.get(phase);
     }
 
     private void drawSnow(Graphics g, Color color, int recursions, int delta) {
