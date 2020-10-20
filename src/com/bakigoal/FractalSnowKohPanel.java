@@ -34,14 +34,13 @@ public class FractalSnowKohPanel extends JPanel {
         int centerY = height / 2;
         int centerToEdgeLength = height / 4 + delta;
 
-        int cy = centerY - centerToEdgeLength;
-        int y = centerY + centerToEdgeLength / 2;
         int ax = (int) (centerX - Math.sqrt(3) * centerToEdgeLength / 2);
         int bx = (int) (centerX + Math.sqrt(3) * centerToEdgeLength / 2);
 
-        Point a = new Point(ax, y);
-        Point b = new Point(bx, y);
-        Point c = new Point(width / 2, cy);
+        Point a = new Point(ax, centerY + centerToEdgeLength / 2);
+        Point b = new Point(bx, centerY + centerToEdgeLength / 2);
+        Point c = new Point(centerX, centerY - centerToEdgeLength);
+
         drawKochLine(g, a, b, 0, recursions);
         drawKochLine(g, c, a, Math.PI / 3 * 2, recursions);
         drawKochLine(g, b, c, -Math.PI / 3 * 2, recursions);
