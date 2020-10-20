@@ -8,8 +8,7 @@ public class FractalSnowKohPanel extends JPanel {
     private static final int SPEED = 1000;
     private static final int PHASE_COUNT = 6;
     private static final java.util.List<Color> COLORS = Arrays.asList(
-            Color.WHITE, Color.GREEN, Color.MAGENTA,
-            Color.YELLOW, Color.CYAN, new Color(255, 111, 0));
+            Color.WHITE, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.CYAN, new Color(255, 111, 0));
     private int phase = 0;
 
     public FractalSnowKohPanel() {
@@ -28,18 +27,12 @@ public class FractalSnowKohPanel extends JPanel {
     private void drawSnow(Graphics g, Color color, int recursions, int delta) {
         g.setColor(color);
 
-        int width = getWidth();
-        int height = getHeight();
-        int centerX = width / 2;
-        int centerY = height / 2;
-        int centerToEdgeLength = height / 4 + delta;
+        Point center = new Point(getWidth() / 2, getHeight() / 2);
+        int centerToEdge = getHeight() / 4 + delta;
 
-        int ax = (int) (centerX - Math.sqrt(3) * centerToEdgeLength / 2);
-        int bx = (int) (centerX + Math.sqrt(3) * centerToEdgeLength / 2);
-
-        Point a = new Point(ax, centerY + centerToEdgeLength / 2);
-        Point b = new Point(bx, centerY + centerToEdgeLength / 2);
-        Point c = new Point(centerX, centerY - centerToEdgeLength);
+        Point a = new Point((int) (center.x - Math.sqrt(3) * centerToEdge / 2), center.y + centerToEdge / 2);
+        Point b = new Point((int) (center.x + Math.sqrt(3) * centerToEdge / 2), center.y + centerToEdge / 2);
+        Point c = new Point(center.x, center.y - centerToEdge);
 
         drawKochLine(g, a, b, 0, recursions);
         drawKochLine(g, c, a, Math.PI / 3 * 2, recursions);
