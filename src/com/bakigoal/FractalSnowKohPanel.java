@@ -28,17 +28,20 @@ public class FractalSnowKohPanel extends JPanel {
     private void drawSnow(Graphics g, Color color, int recursions, int delta) {
         g.setColor(color);
 
-        int w = getWidth();
-        int h = getHeight();
-        int x = h / 4 + delta;
-        int cy = h / 2 - x;
-        int y = h / 2 + x / 2;
-        int ax = (int) (w / 2 - Math.sqrt(3) * x / 2);
-        int bx = (int) (w / 2 + Math.sqrt(3) * x / 2);
+        int width = getWidth();
+        int height = getHeight();
+        int centerX = width / 2;
+        int centerY = height / 2;
+        int centerToEdgeLength = height / 4 + delta;
+
+        int cy = centerY - centerToEdgeLength;
+        int y = centerY + centerToEdgeLength / 2;
+        int ax = (int) (centerX - Math.sqrt(3) * centerToEdgeLength / 2);
+        int bx = (int) (centerX + Math.sqrt(3) * centerToEdgeLength / 2);
 
         Point a = new Point(ax, y);
         Point b = new Point(bx, y);
-        Point c = new Point(w / 2, cy);
+        Point c = new Point(width / 2, cy);
         drawKochLine(g, a, b, 0, recursions);
         drawKochLine(g, c, a, Math.PI / 3 * 2, recursions);
         drawKochLine(g, b, c, -Math.PI / 3 * 2, recursions);
